@@ -17,18 +17,54 @@ describe('cal', () => {
      let actual = execSync('./cal.js 1 1999').toString();
       expect(actual).to.equal(goal);
     });
-    //  it('should handle april 1800', () => {
-    //  let goal = execSync('cal 4 1800').toString();
-    //  let actual = execSync('./cal.js 4 1800').toString();
-    //   expect(actual).to.equal(goal);
-    // });
+     it('should handle april 1800', () => {
+     let goal = execSync('cal 4 1800').toString();
+     let actual = execSync('./cal.js 4 1800').toString();
+      expect(actual).to.equal(goal);
+    });
      //it('should handle all the months in a year', () => {
        //let goal = execSync('cal 2012').toString();
       //expect(year.grabYear(2012)).to.equal(goal);
      //});
 
   });
+  describe('Correct number of lines', () => {
+     it('should handle aug 2015, a six week month ', () => {
+     let goal = execSync('cal 8 2015').toString();
+     let actual = execSync('./cal.js 8 2015').toString();
+      expect(actual).to.equal(goal);
+    });
+     it('should handle october 2015, a 5 week month', () => {
+      let goal = execSync('cal 10 2015').toString();
+      let actual = execSync('./cal.js 10 2015').toString();
+      expect(actual).to.equal(goal);
+    });
+     it('should handle feb 2015, a 4 week month', () => {
+      let goal = execSync('cal 2 2015').toString();
+      let actual = execSync('./cal.js 2 2015').toString();
+      expect(actual).to.equal(goal);
+    });
+  });
 
+  describe('months.js', () => {
+    const {makeMonth, checkLeapYear, firstLine, secondLine, numberOfLines} = require('../lib/months.js');
+
+    it('should create top line for month and year', () => {
+      expect(firstLine(1, 2016)).to.equal("    January 2016");
+      });
+    it('should create second line', () => {
+      expect(secondLine()).to.equal('Su Mo Tu We Th Fr Sa');
+      });
+
+    describe('leap year', () => {
+      it('checks to see if Feb 2012 is a leap year', () =>{
+        expect(checkLeapYear(2012, 2)).to.equal(true);
+      });
+      it('checks to see if Feb 2014 is a leap year',() => {
+        expect(checkLeapYear(2014, 2)).to.equal(false);
+      });
+    });
+  });
   describe("Zeller's congruence", () => {
     var zellers = require('../lib/zellers.js');
      //const zellers = require('../lib/zellers.js');
@@ -80,32 +116,8 @@ describe('cal', () => {
   });
 });
 
-  describe('months.js', () => {
-    const {makeMonth, checkLeapYear, firstLine, secondLine, numberOfLines} = require('../lib/months.js');
 
-    it('should create top line for month and year', () => {
-      expect(firstLine(1, 2016)).to.equal("    January 2016");
-      });
-    it('should create second line', () => {
-      expect(secondLine()).to.equal('Su Mo Tu We Th Fr Sa');
-      });
 
-    // it("should print the days relative to 20 spaces", ()=>{
-    //   expect(makeMonth(3, 2016)).to.equal("       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
-    // });
-
-     //it('should print a full calendar', () => {
-       //expect(makeMonth(3, 2016)).to.equal("    March 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
-     //});
-
-    describe('leap year', () => {
-      it('checks to see if Feb 2012 is a leap year', () =>{
-        expect(checkLeapYear(2012, 2)).to.equal(true);
-      });
-      it('checks to see if Feb 2014 is a leap year',() => {
-        expect(checkLeapYear(2014, 2)).to.equal(false);
-      });
-    });
 
     //describe('30 day or 31 day' () => {
       //it('checks to see if Nov 2015 has 30 days', (){
@@ -116,16 +128,4 @@ describe('cal', () => {
       //});
     //});
 
-    //describe('number of weeks in month'() => {
-      //it('checks number of weeks in Feb 2015', (){
-        //expect(numberOfWeeks(2015, 2)).to.equal(4);
-      //});
-     //it('checks number of weeks in Oct 2015', (){
-        //expect(numberOfWeeks(2015, 10)).to.equal(5);
-      //});
-     //it('checks number of weeks in August 2015', (){
-        //expect(numberOfWeeks(2015, 8)).to.equal(6);
-      //});
-
-    });
 

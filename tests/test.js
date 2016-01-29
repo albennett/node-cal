@@ -8,9 +8,25 @@ describe('cal', () => {
   describe('CLI', () => {
     it('should handle the current month', () => {
       // const month = require('../lib/months.js');
-      const goal = execSync('cal').toString();
-      expect(createMonth(1, 2016)).to.equal(goal);
+     let goal = execSync('cal').toString();
+     let actual = execSync('./cal.js').toString();
+      expect(actual).to.equal(goal);
     });
+     it('should handle jan 1999', () => {
+     let goal = execSync('cal 1 1999').toString();
+     let actual = execSync('./cal.js 1 1999').toString();
+      expect(actual).to.equal(goal);
+    });
+     it('should handle april 1800', () => {
+     let goal = execSync('cal 4 1800').toString();
+     let actual = execSync('./cal.js 4 1800').toString();
+      expect(actual).to.equal(goal);
+    });
+     //it('should handle all the months in a year', () => {
+       //let goal = execSync('cal 2012').toString();
+      //expect(year.grabYear(2012)).to.equal(goal);
+     //});
+
   });
 
   describe("Zeller's congruence", () => {
@@ -63,24 +79,24 @@ describe('cal', () => {
     });
   });
 });
-  
+
   describe('months.js', () => {
-    const {makeMonth, checkLeapYear, createMonth} = require('../lib/months.js');
-  
-//     it('should create top line for month and year', () => {
-//       expect(createMonth(2016, 1)).to.equal("    January 2016\nSu Mo Tu We Th Fr Sa");
-//       });
-//     it('should create top line for month and year', () => {
-//       expect(createMonth(2016, 1)).to.equal("    January 2016\nSu Mo Tu We Th Fr Sa");
-//       });
+    const {makeMonth, checkLeapYear, firstLine, secondLine, numberOfLines} = require('../lib/months.js');
 
-//     it("should print the days relative to 20 spaces", ()=>{
-//       expect(grabDays(2016, 3)).to.equal("       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
-//     });
+    it('should create top line for month and year', () => {
+      expect(firstLine(1, 2016)).to.equal("    January 2016");
+      });
+    it('should create second line', () => {
+      expect(secondLine()).to.equal('Su Mo Tu We Th Fr Sa');
+      });
 
-     it('should print a full calendar', () => {
-       expect(makeMonth(3, 2016)).to.equal("    March 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
-     });
+    it("should print the days relative to 20 spaces", ()=>{
+      expect(makeMonth(3, 2016)).to.equal("       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
+    });
+
+     //it('should print a full calendar', () => {
+       //expect(makeMonth(3, 2016)).to.equal("    March 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
+     //});
 
     describe('leap year', () => {
       it('checks to see if Feb 2012 is a leap year', () =>{

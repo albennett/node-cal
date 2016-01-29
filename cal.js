@@ -1,6 +1,6 @@
 #!/usr/bin/env node --harmony_destructuring
 'use strict';
-const {checkLeapYear, makeCalBody, firstLine, secondLine} = require('./lib/months.js');
+const {checkLeapYear, calBody, firstLine, secondLine, fullMonth} = require('./lib/months.js');
 const [,, ...args] = process.argv;
 
 const dateObj = new Date();
@@ -13,12 +13,12 @@ if (args.length === 2) {
      console.log('Must be an actual month number, and only between 1753 and 9999. Try again!')
   }
   else {
-    console.log(`${firstLine(month, year)}\n${secondLine(month, year)}\n${makeCalBody(month, year)}`);
+    console.log(`${fullMonth(month, year)}`);
   }
 } else if (args.length === 1) {
   console.log('im working on it,okk');
 } else if(args.length === 0) {
-  console.log(`${firstLine(currentMonth, currentYear)}\n${secondLine(currentMonth, currentYear)}\n${makeCalBody(currentMonth, currentYear)}`);
+  console.log(`${firstLine(currentMonth, currentYear)}\n${secondLine(currentMonth, currentYear)}\n${calBody(currentMonth, currentYear)}`);
 } else {
   console.log('dun broke it');
   process.exit(64);

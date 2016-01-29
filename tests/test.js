@@ -45,6 +45,18 @@ describe('cal', () => {
       expect(actual).to.equal(goal);
     });
   });
+  describe('30 day or 31 day', () => {
+    it('checks to see if Nov 2015 has 30 days', () => {
+      let goal = execSync('cal 11 2015').toString();
+      let actual = execSync('./cal.js 11 2015').toString();
+      expect(actual).to.equal(goal);
+    });
+    it('checks to see if Dec 2015 has 31 days', () => {
+      let goal = execSync('cal 12 2015').toString();
+      let actual = execSync('./cal.js 12 2015').toString();
+      expect(actual).to.equal(goal);
+    });
+  });
 
   describe('months.js', () => {
     const {makeMonth, checkLeapYear, firstLine, secondLine, numberOfLines} = require('../lib/months.js');
@@ -115,17 +127,5 @@ describe('cal', () => {
     });
   });
 });
-
-
-
-
-    //describe('30 day or 31 day' () => {
-      //it('checks to see if Nov 2015 has 30 days', (){
-        //expect(cal.finalCalDays(2015, 11)).to.equal(30);
-    //});
-      //it('checks to see if Dec 2015 has 31 days', (){
-        //expect(numberOfDays(2015,12)).to.equal(31);
-      //});
-    //});
 
 

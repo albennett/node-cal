@@ -1,31 +1,28 @@
 #!/usr/bin/env node --harmony_destructuring
 'use strict';
-const seeMonth = require('./lib/months.js').createMonth;
+const {checkLeapYear, makeCalBody, firstLine, secondLine} = require('./lib/months.js');
 const [,, ...args] = process.argv;
-console.log(args);
+
+const dateObj = new Date();
+const currentMonth = dateObj.getUTCMonth() + 1;
+const currentYear = dateObj.getUTCFullYear();
 
 if (args.length === 2) {
-  //const [month, year] = args;
-  console.log(seeMonth(args[0], args[1]));
+  const [month, year] = args;
+  if (month < 1 || year < 1753 || year > 9999){
+     console.log('Must be an actual month number, and only between 1753 and 9999. Try again!')
+  }
+  else {
+    console.log(`${firstLine(month, year)}\n${secondLine(month, year)}\n${makeCalBody(month, year)}`);
+  }
 } else if (args.length === 1) {
   console.log('im working on it,okk');
-  //const [year] = args;
-  //console.log(`generateYear(${year})`)
+} else if(args.length === 0) {
+  console.log(`${firstLine(currentMonth, currentYear)}\n${secondLine(currentMonth, currentYear)}\n${makeCalBody(currentMonth, currentYear)}`);
 } else {
   console.log('dun broke it');
   process.exit(64);
 }
 
-//if (year < 1753) {
-  //console.log('app does not work prior to 1753');
-//} else {
-  //console.log('cal');
-//}
-
-//const generateMonth = require('./lib/month);
-
-//console.log(generateMonth(2016,1));
-//
-//var monthView = require('./lib/month.js').generateMonthView;
 
 

@@ -28,6 +28,14 @@ describe('cal', () => {
      //});
 
   });
+  // describe('error messages', () => {
+  //   it('should return error log if before 1753', () => {
+  //     // const month = require('../lib/months.js');
+  //    let actual = execSync('./cal.js 1758').toString();
+  //     expect(actual).to.equal('im working on it,okk');
+  //   });
+  //
+  // });
   describe('Correct number of lines', () => {
      it('should handle aug 2015, a six week month ', () => {
      let goal = execSync('cal 8 2015').toString();

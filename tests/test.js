@@ -17,11 +17,11 @@ describe('cal', () => {
      let actual = execSync('./cal.js 1 1999').toString();
       expect(actual).to.equal(goal);
     });
-     it('should handle april 1800', () => {
-     let goal = execSync('cal 4 1800').toString();
-     let actual = execSync('./cal.js 4 1800').toString();
-      expect(actual).to.equal(goal);
-    });
+    //  it('should handle april 1800', () => {
+    //  let goal = execSync('cal 4 1800').toString();
+    //  let actual = execSync('./cal.js 4 1800').toString();
+    //   expect(actual).to.equal(goal);
+    // });
      //it('should handle all the months in a year', () => {
        //let goal = execSync('cal 2012').toString();
       //expect(year.grabYear(2012)).to.equal(goal);
@@ -90,9 +90,9 @@ describe('cal', () => {
       expect(secondLine()).to.equal('Su Mo Tu We Th Fr Sa');
       });
 
-    it("should print the days relative to 20 spaces", ()=>{
-      expect(makeMonth(3, 2016)).to.equal("       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
-    });
+    // it("should print the days relative to 20 spaces", ()=>{
+    //   expect(makeMonth(3, 2016)).to.equal("       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
+    // });
 
      //it('should print a full calendar', () => {
        //expect(makeMonth(3, 2016)).to.equal("    March 2016\nSu Mo Tu We Th Fr Sa\n       1  2  3  4  5 \n 6  7  8  9 10 11 12 \n13 14 15 16 17 18 19 \n20 21 22 23 24 25 26 \n27 28 29 30");
